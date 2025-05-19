@@ -145,3 +145,5 @@ __pycache__/
 
 # Local environment variable files (redundant but safe)
 .env
+
+trend_exports/
