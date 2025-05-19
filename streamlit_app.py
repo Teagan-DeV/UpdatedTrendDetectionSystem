@@ -41,9 +41,11 @@ with col1:
 with col2:
     b1, b2 = st.columns(2)
     with b1:
-        st.button("🟢 Generate This Week’s Trends")
+        if st.button("🟢 Generate This Week’s Trends"):
+            st.session_state.view = "weekly"
     with b2:
-        st.button("🔵 Generate This Month’s Trends")
+        if st.button("🔵 Generate This Month’s Trends"):
+            st.session_state.view = "monthly"
 
 with col3:
     st.empty()
