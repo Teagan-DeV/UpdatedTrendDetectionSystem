@@ -33,14 +33,17 @@ st.markdown(
 
 st.markdown(" ")
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3 = st.columns([2, 3, 2])
 
 with col1:
     st.empty()
 
 with col2:
-    st.button("🟢 Generate This Week’s Trends")
-    st.button("🔵 Generate This Month’s Trends")
+    b1, b2 = st.columns(2)
+    with b1:
+        st.button("🟢 Generate This Week’s Trends")
+    with b2:
+        st.button("🔵 Generate This Month’s Trends")
 
 with col3:
     st.empty()
