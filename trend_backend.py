@@ -217,6 +217,6 @@ def generate_trends(mode="weekly", test_mode=True):
     ax.legend()
     trend_fig = fig
 
-    save_trends_to_csv(weekly_counts, monthly_counts, cluster_labels)
+    save_trends_to_csv(weekly_counts, monthly_counts, cluster_labels, final_articles)
 
     return cluster_labels, final_articles, wordcloud_figs, trend_fig
