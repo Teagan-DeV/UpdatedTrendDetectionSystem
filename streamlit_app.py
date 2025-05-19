@@ -69,11 +69,14 @@ if st.session_state.view:
                 if match:
                     shown_terms.add(term)
                     headline = match.get("title", "Untitled")
+                    snippet = match.get("description) or match.get("content) or "No summary available"
                     url = match.get("url", "")
         
                     st.markdown(f"- *{headline}*")
+                    st.markdown(f"{snippet}")
                     if url:
                         st.markdown(f"  [Read Full Article]({url})", unsafe_allow_html=True)
+                    st.markdown("---")
 
             if not shown_terms:
                 st.markdown("*No article headlines matched the top terms*")
