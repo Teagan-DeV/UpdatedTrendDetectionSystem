@@ -56,7 +56,7 @@ if st.session_state.view:
                 st.markdown(f"- {term}")
 
         with col2:
-            st.markdown(f"---\n### 🔹 Sample Articles for Cluster {i+1} 🔹\n---")
+            st.markdown(f"---\n###Sample Articles for Cluster {i+1}\n---")
             top_terms = cluster_labels[i]["top_terms"]
             shown_terms = set()
 
