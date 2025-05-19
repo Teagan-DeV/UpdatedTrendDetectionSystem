@@ -79,8 +79,8 @@ if st.session_state.view:
                         st.markdown(f"[Read Full Article]({url})", unsafe_allow_html=True)
                     st.markdown("---")  # thin break between keyword-article pairs
 
-          if not shown_terms:
-            st.markdown("*No article headlines matched the top terms*")
+              if not shown_terms:
+                st.markdown("*No article headlines matched the top terms*")
     
         with col3:
             st.markdown("**Word Cloud**")
