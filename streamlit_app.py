@@ -22,18 +22,31 @@ max_pages = 1 if test_mode else 5
 if "view" not in st.session_state:
     st.session_state.view = None
 
-st.title("🌿 Trend Tracker")
-st.markdown("### What would you like to see today?")
+st.markdown(
+    """
+    <div style='text-align: center'>
+        <h1>🌿 Trend Tracker</h1>
+        <h3>What would you like to see today?</h3>
+    </div>
+    """,
+    unsafe_allow_html=True)
 
-col1, col2 = st.columns(2)
+st.markdown(" ")
+
+col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
-    if st.button("🟢 Generate This Week’s Trends"):
-        st.session_state.view = "weekly"
+    st.empty()
 
 with col2:
-    if st.button("🔵 Generate This Month’s Trends"):
-        st.session_state.view = "monthly"
+    st.button("🟢 Generate This Week’s Trends")
+    st.button("🔵 Generate This Month’s Trends")
+
+with col3:
+    st.empty()
+
+st.markdown(" ")
+st.markdown("---")
 
 # ========================
 # --- RESULTS VIEW
@@ -46,17 +59,18 @@ if st.session_state.view:
     cluster_labels, final_articles, wordcloud_figs, trend_fig = generate_trends(mode, test_mode)
 
     for i in range(len(cluster_labels)):
-        st.markdown(f"#### 🧠 Cluster {i+1}: {cluster_labels[i]['custom_label']}")
+        st.markdown(f"### Cluster {i+1}: {cluster_labels[i]['custom_label']}")
 
         col1, col2, col3 = st.columns([1.2, 1, 1])
 
         with col1:
-            st.markdown("**Top Terms**")
+            st.markdown("### Top Terms")
             for term in cluster_labels[i]["top_terms"]:
                 st.markdown(f"- {term}")
 
         with col2:
-            st.markdown(f"---\n###Sample Articles for Cluster {i+1}\n---")
+            st.markdown(f"### Sample Articles\n_Cluster {i+1}_")
+            st.markdown(" ")
             top_terms = cluster_labels[i]["top_terms"]
             shown_terms = set()
 
@@ -77,13 +91,13 @@ if st.session_state.view:
                     st.markdown(f"{snippet}")
                     if url:
                         st.markdown(f"[Read Full Article]({url})", unsafe_allow_html=True)
-                    st.markdown("---")  # thin break between keyword-article pairs
+                    st.markdown("---")
 
             if not shown_terms:
                 st.markdown("*No article headlines matched the top terms*")
     
         with col3:
-            st.markdown("**Word Cloud**")
+            st.markdown("### Word Cloud")
             st.pyplot(wordcloud_figs[i])
 
     st.markdown("---")
