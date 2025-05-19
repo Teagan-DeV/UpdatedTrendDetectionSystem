@@ -62,7 +62,7 @@ if st.session_state.view:
     cluster_labels, final_articles, wordcloud_figs, trend_fig = generate_trends(mode, test_mode)
 
     for i in range(len(cluster_labels)):
-        st.markdown(f"### Cluster {i+1}: {cluster_labels[i]['custom_label']}")
+        st.markdown(f"### Cluster {i+1}")
 
         col1, col2, col3 = st.columns([1.2, 1, 1])
 
