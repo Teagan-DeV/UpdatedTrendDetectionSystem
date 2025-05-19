@@ -21,9 +21,10 @@ except LookupError:
 
 def save_trends_to_csv(weekly_df, monthly_df, cluster_labels, output_dir='trend_exports'):
     os.makedirs(output_dir, exist_ok=True)
+    today_str = datetime.today().strftime("%Y-%m-%d")
 
-    weekly_df.to_csv(f"{output_dir}/weekly_trends.csv")
-    monthly_df.to_csv(f"{output_dir}/monthly_trends.csv")
+    weekly_df.to_csv(f"{output_dir}/weekly_trends{today_str}.csv")
+    monthly_df.to_csv(f"{output_dir}/monthly_trends{today_str}.csv")
 
     label_data = []
     for cluster_id, info in cluster_labels.items():
@@ -33,9 +34,11 @@ def save_trends_to_csv(weekly_df, monthly_df, cluster_labels, output_dir='trend_
             "top_terms": ", ".join(info["top_terms"])
         })
     label_df = pd.DataFrame(label_data)
-    label_df.to_csv(f"{output_dir}/cluster_labels.csv", index=False)
+    label_df.to_csv(f"{output_dir}/cluster_labels{today_str}.csv", index=False)
 
-    print(f"✅ Trend data saved to '{output_dir}/' folder.")
+    pd.DataFrame(final_articles).to_csv(f"{output_dir}/articles_{today_str}.csv", index=False)
+
+    print(f"✅ Trend data saved to '{output_dir}/' folder for {today_str}.")
 
 
 def generate_trends(mode="weekly", test_mode=True):
